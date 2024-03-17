@@ -100,7 +100,7 @@ sequenceDiagram
 * **Ruby and Rails**: Stay current with the latest stable releases.
 * **Deployment**: Leverage AWS ECS with Fargate for efficient container management, S3 for robust image storage, and RDS for a resilient PostgreSQL database.
 
-> \[!NOTE] Ensure all images are processed to meet individual platform requirements, guaranteeing a seamless and consistent user experience.
+> **Note**: Ensure all images are processed to meet individual platform requirements, guaranteeing a seamless and consistent user experience.
 
 ## Conclusion
 
