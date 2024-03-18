@@ -4,7 +4,7 @@
 
 System design is a crucial aspect of software development that forms the backbone of building robust, scalable, and maintainable systems. It involves understanding the system's requirements, defining clear specifications, and creating a detailed blueprint that guides the development process. A well-designed system architecture ensures that the system can handle growth, adapt to changing needs, and deliver a seamless user experience.
 
-In this guide, we'll embark on a deep dive into the world of system design, using Linkarooie, an innovative platform for managing and synchronizing online presence across popular platforms like Twitter, Instagram, and Facebook, as our case study. We'll explore the functional and non-functional requirements, system architecture, components, and various considerations that go into designing a complex system like Linkarooie.
+In this guide, we'll embark on a deep dive into the world of system design, using Linkarooie, an innovative platform for managing and synchronizing online presence across popular platforms like Twitter/X, Instagram, and Facebook, as our case study. We'll explore the functional and non-functional requirements, system architecture, components, and various considerations that go into designing a complex system like Linkarooie.
 
 ## Linkarooie: Revolutionizing Online Presence Management
 
@@ -16,7 +16,7 @@ Linkarooie is a game-changing platform that simplifies how users manage and sync
 
 1. **Centralized Image Management**: Linkarooie offers a single platform for users to upload and manage their profile images and banners, eliminating the need to update them individually on each platform.
 
-2. **Automated Image Synchronization**: With Linkarooie, users can automatically synchronize their profile images and banners across supported platforms, including Twitter, Instagram, and Facebook, ensuring a consistent and up-to-date online presence.
+2. **Automated Image Synchronization**: With Linkarooie, users can automatically synchronize their profile images and banners across supported platforms, including Twitter/X, Instagram, and Facebook, ensuring a consistent and up-to-date online presence.
 
 3. **Image Optimization**: Linkarooie automatically adjusts and optimizes images to meet the specific requirements of each platform, guaranteeing a professional and visually appealing appearance.
 
@@ -48,7 +48,7 @@ Linkarooie addresses the common challenge faced by individuals and businesses in
    - Implement image caching and content delivery network (CDN) integration to optimize image delivery performance.
 
 4. **Platform Integration and Synchronization**:
-   - Develop secure and reliable API integrations with supported platforms (Twitter, Instagram, Facebook) to enable seamless image synchronization.
+   - Develop secure and reliable API integrations with supported platforms (Twitter/X, Instagram, Facebook) to enable seamless image synchronization.
    - Implement OAuth-based authentication and authorization flows to securely access user accounts on external platforms.
    - Handle API rate limiting, error handling, and retry mechanisms to ensure smooth integration and synchronization processes.
    - Provide clear documentation and developer resources to facilitate easy integration with Linkarooie's API.
@@ -121,7 +121,7 @@ graph LR
     Worker --> S3
     Worker --> DB
     Sync --> API[API Integration Service]
-    API --> Twitter[Twitter API]
+    API --> Twitter/X[Twitter/X API]
     API --> Instagram[Instagram API]
     API --> Facebook[Facebook API]
     API --> DB
@@ -143,7 +143,7 @@ The high-level architecture of Linkarooie follows a modular and scalable design,
 
 5. **Image Processing Worker**: The Image Processing Worker picks up messages from the queue and performs the necessary image transformations and optimizations. It generates multiple versions of each image to meet the requirements of different external platforms and stores the processed images back in S3.
 
-6. **Image Synchronization Service**: This service handles the synchronization of processed images with external platforms (Twitter, Instagram, Facebook). It retrieves the necessary user credentials and access tokens from the database and communicates with the API Integration Service to initiate the synchronization process.
+6. **Image Synchronization Service**: This service handles the synchronization of processed images with external platforms (Twitter/X, Instagram, Facebook). It retrieves the necessary user credentials and access tokens from the database and communicates with the API Integration Service to initiate the synchronization process.
 
 7. **API Integration Service**: The API Integration Service acts as a bridge between Linkarooie and external platforms. It handles the authentication and authorization flows, makes API calls to external platforms to update user profile images and banners, and handles any necessary data transformations and error handling.
 
@@ -256,7 +256,7 @@ The database schema for Linkarooie consists of the following tables:
 
 1. **User**: Stores user information, including their email, password hash, name, and timestamps for account creation and updates.
 
-2. **Platform**: Represents the external platforms supported by Linkarooie, such as Twitter, Instagram, and Facebook. It includes the platform name, base URL, and API version.
+2. **Platform**: Represents the external platforms supported by Linkarooie, such as Twitter/X, Instagram, and Facebook. It includes the platform name, base URL, and API version.
 
 3. **UserPlatform**: Establishes the relationship between users and platforms. It stores the access tokens, refresh tokens, and expiration timestamps for each user-platform pair.
 
@@ -290,7 +290,7 @@ sequenceDiagram
     participant ProcessingWorker
     participant SyncService
     participant APIService
-    participant TwitterAPI
+    participant Twitter/XAPI
     participant InstagramAPI
     participant FacebookAPI
     participant AnalyticsService
@@ -316,8 +316,8 @@ sequenceDiagram
     SyncService->>DB: Retrieve User Platforms and Image Details
     SyncService->>APIService: Request Image Synchronization
 
-    APIService->>TwitterAPI: Authenticate and Update Profile Image
-    TwitterAPI->>APIService: Image Update Confirmation
+    APIService->>Twitter/XAPI: Authenticate and Update Profile Image
+    Twitter/XAPI->>APIService: Image Update Confirmation
     APIService->>InstagramAPI: Authenticate and Update Profile Image
     InstagramAPI->>APIService: Image Update Confirmation
     APIService->>FacebookAPI: Authenticate and Update Profile Image
@@ -345,7 +345,7 @@ The API integration flow in Linkarooie involves the following steps:
 11. When the user initiates image synchronization through the UI, the request is sent to the Image Synchronization Service.
 12. The Image Synchronization Service retrieves the user's connected platforms and image details from the database.
 13. The Image Synchronization Service sends a synchronization request to the API Integration Service.
-14. The API Integration Service authenticates with each supported platform (Twitter, Instagram, Facebook) and updates the user's profile image using the respective platform's API.
+14. The API Integration Service authenticates with each supported platform (Twitter/X, Instagram, Facebook) and updates the user's profile image using the respective platform's API.
 15. Each platform confirms the image update, and the API Integration Service receives the confirmation.
 16. The API Integration Service sends the synchronization result back to the Image Synchronization Service.
 17. The Image Synchronization Service updates the synchronization status in the database and logs the synchronization event using the Analytics Service.
@@ -368,7 +368,7 @@ Linkarooie prioritizes the security and privacy of user data. The following meas
    - All data transmitted between the client and server is encrypted using HTTPS/SSL to protect against eavesdropping and tampering.
 
 3. **Secure API Communication**:
-   - API requests to external platforms (Twitter, Instagram, Facebook) are made using secure HTTPS connections to ensure the confidentiality and integrity of the data exchanged.
+   - API requests to external platforms (Twitter/X, Instagram, Facebook) are made using secure HTTPS connections to ensure the confidentiality and integrity of the data exchanged.
    - API keys and secrets are securely stored and managed using a secrets management system (e.g., AWS Secrets Manager) to prevent unauthorized access.
 
 4. **Input Validation and Sanitization**:
@@ -450,7 +450,7 @@ By adopting these deployment and DevOps practices, Linkarooie ensures a reliable
 
 ## Conclusion
 
-Linkarooie represents a significant advancement in online presence management, empowering users to effortlessly synchronize and maintain a consistent digital identity across popular platforms like Twitter, Instagram, and Facebook. By following the system design principles and considerations outlined in this guide, Linkarooie can be developed as a robust, scalable, and user-centric platform.
+Linkarooie represents a significant advancement in online presence management, empowering users to effortlessly synchronize and maintain a consistent digital identity across popular platforms like Twitter/X, Instagram, and Facebook. By following the system design principles and considerations outlined in this guide, Linkarooie can be developed as a robust, scalable, and user-centric platform.
 
 The modular architecture, with its focus on separation of concerns and scalability, allows Linkarooie to handle a growing user base and increasing data volumes efficiently. The integration of OAuth providers and support for traditional email-based registration provides users with flexible and secure authentication options.
 
