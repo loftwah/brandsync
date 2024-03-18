@@ -15,7 +15,7 @@
 
 ## Introduction
 
-Linkarooie is a revolutionary platform that simplifies the management and synchronization of online presence across popular platforms like Twitter, Instagram, and Facebook. It provides users with a centralized hub to upload, manage, and synchronize their profile images and banners, ensuring a consistent and professional digital identity.
+Linkarooie is a revolutionary platform that simplifies the management and synchronization of online presence across popular platforms like Twitter/X, Instagram, and Facebook. It provides users with a centralized hub to upload, manage, and synchronize their profile images and banners, ensuring a consistent and professional digital identity.
 
 ## System Overview
 
@@ -58,7 +58,7 @@ graph LR
     Worker --> S3
     Worker --> DB
     Sync --> API[API Integration Service]
-    API --> Twitter[Twitter API]
+    API --> Twitter/X[Twitter/X API]
     API --> Instagram[Instagram API]
     API --> Facebook[Facebook API]
     API --> DB
@@ -168,7 +168,7 @@ sequenceDiagram
     participant ProcessingWorker
     participant SyncService
     participant APIService
-    participant TwitterAPI
+    participant Twitter/XAPI
     participant InstagramAPI
     participant FacebookAPI
     participant AnalyticsService
@@ -194,8 +194,8 @@ sequenceDiagram
     SyncService->>DB: Retrieve User Platforms and Image Details
     SyncService->>APIService: Request Image Synchronization
 
-    APIService->>TwitterAPI: Authenticate and Update Profile Image
-    TwitterAPI->>APIService: Image Update Confirmation
+    APIService->>Twitter/XAPI: Authenticate and Update Profile Image
+    Twitter/XAPI->>APIService: Image Update Confirmation
     APIService->>InstagramAPI: Authenticate and Update Profile Image
     InstagramAPI->>APIService: Image Update Confirmation
     APIService->>FacebookAPI: Authenticate and Update Profile Image
